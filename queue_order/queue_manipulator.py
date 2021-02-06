@@ -191,9 +191,12 @@ class QueueManipulator:
 			for run in paragraph.runs:
 				word = run.text.lower().replace(u'\xa0', u' ')
 				word = word.strip()
+				print('word: ', word)
 				tempWords = self.getWord(word)
+
 				if len(tempWords) == 0:
 					continue
+				print('tempword: ', tempWords)
 				# checks if the word is bold and a number then the number belongs to previous word
 				if run.bold and (tempWords[0].strip()).isnumeric():
 					boldWords = boldWords + " " + " ".join(tempWords)
@@ -412,7 +415,10 @@ class QueueManipulator:
 				elif self.member_day_data_list[i].temp_variable == 0:
 					self.member_day_data_list[i].is_bold = True
 				else:
-					self.member_day_data_list[i].is_minus_one = False
+					if self.member_day_data_list[i].is_on_leave_today == 'Y' and self.member_day_data_list[i].temp_variable == -1:
+						self.member_day_data_list[i].is_minus_one = True
+					else:
+						self.member_day_data_list[i].is_minus_one = False
 			else: # complete case
 				if self.member_day_data_list[i].temp_variable == 1:
 					self.member_day_data_list[i] = self.markBoldAndMinusOneMemberData(self.member_day_data_list[i])
