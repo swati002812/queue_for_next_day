@@ -20,7 +20,7 @@ def index():
 
 @app.route('/next_day_queue', methods = ['GET'])
 def uploadFile():
-    return render_template('upload.html', domain=request.url_root, path='/next_day_queue')
+    return render_template('upload.html', domain=request.url_root)
 
 @app.route('/next_day_queue', methods = ['POST'])
 def nextDayQueue():
@@ -29,6 +29,7 @@ def nextDayQueue():
     print(baseline)
     if Helper.allowedFile(upload_file.filename, ALLOWED_EXTENSIONS):
         filename = secure_filename(upload_file.filename)
+        print(app.config)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], Helper.getFileName(Helper.getFileExtension(filename)))
         upload_file.save(filepath)
         queue = Queue(baseline, filepath)
