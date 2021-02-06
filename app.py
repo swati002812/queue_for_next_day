@@ -20,7 +20,7 @@ def index():
 
 @app.route('/next_day_queue', methods = ['GET'])
 def uploadFile():
-    return render_template('upload.html')
+    return render_template('upload.html', domain=request.url_root, path='/next_day_queue')
 
 @app.route('/next_day_queue', methods = ['POST'])
 def nextDayQueue():
