@@ -1,0 +1,34 @@
+<html>
+   <body>
+      <form action = "http://localhost:5000/next_day_queue" method = "POST" 
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file" />
+         Baseline: <input type = "number" name = "baseline" /> 
+         <input type = "submit"/>
+      </form>
+      <div>
+         <b><u>Queue for Next Day: </u></b><br>
+         {% for item in data %}
+            {% if not loop.last %}
+               {% if item.is_bold == true %}
+                  {% if item.diff != None %}
+                     <b>{{item.name}}</b> {{item.diff}} >
+                  {% else %}
+                     <b>{{item.name}}</b> >
+                  {% endif %}
+               {% elif item.is_minus_one == true %}
+                  {{item.name}} -1 >
+               {% else %}
+                  {{item.name}} >
+               {% endif %}
+            {% else %}
+               {% if item.is_minus_one == true %}
+                  {{item.name}} -1 >
+               {% else %}
+                  {{item.name}}
+               {% endif %}
+            {% endif %}
+         {% endfor %}
+     </div>
+   </body>
+</html>
