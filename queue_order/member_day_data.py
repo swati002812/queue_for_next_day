@@ -9,3 +9,4 @@ class MemberDayData:
     is_bold = None
     is_minus_one = None
     diff = None
+    is_already_minus_one = None # minus one after member name

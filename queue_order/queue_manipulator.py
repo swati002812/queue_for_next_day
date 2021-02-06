@@ -56,6 +56,12 @@ class QueueManipulator:
 		else:
 			return (-1)
 	
+	def isNegativeNumber(self, text):
+		num = text.split("-")
+		if len(num) > 1 and num[1].isnumeric():
+			return True
+		return False
+	
 	'''
 		getNoOfRounds function
 			1. strip and slipt on space
@@ -68,9 +74,9 @@ class QueueManipulator:
 		if len(text) > 1:
 			if text[len(text) - 1] != '':
 				num = text[len(text) - 1].strip()
-				if num.isnumeric():
-					if num == -1:
-						return 1
+				if num.isnumeric() or self.isNegativeNumber(num):
+					if self.isNegativeNumber(num):
+						return str(0)
 					return str(num)
 		if type == self.WORD_BOLD:
 			return str(self.baseline)
@@ -88,6 +94,15 @@ class QueueManipulator:
 			if text == 'bm':
 				return 'Y'
 		return None
+	
+	def isMinusOneMember(self, word):
+		text = word.strip().split(" ", 10)
+		if len(text) > 1:
+			if text[len(text) - 1] != '':
+				num = text[len(text) - 1].strip()
+				if self.isNegativeNumber(num):
+					return True
+		return False
 	
 	'''
 		member was on leave if words contains
@@ -119,10 +134,20 @@ class QueueManipulator:
 			# creating tempMember list
 			temp_member = MemberDayData()
 			temp_member.name = self.getName(word)
-			temp_member.no_of_rounds = self.getNoOfRounds(word, type)
-			temp_member.temp_variable = self.getTempVariable(temp_member.no_of_rounds)
 			temp_member.is_BM = self.checkBM(word)
 			temp_member.is_on_leave_today = self.checkIsOnLeaveToday(word)
+			temp_member.no_of_rounds = self.getNoOfRounds(word, type)
+
+			if temp_member.is_on_leave_today == 'Y':
+				temp_member.no_of_rounds = str(0)
+			
+			temp_member.temp_variable = self.getTempVariable(temp_member.no_of_rounds)
+			
+			if self.isMinusOneMember(word):
+				temp_member.is_already_minus_one = True
+
+
+			
 
 			#appending member in global list
 			self.member_day_data_list.append(temp_member)
@@ -145,7 +170,7 @@ class QueueManipulator:
 					temp = ''
 					continue
 			else:
-				if text[i].isnumeric() or text[i] == '(':
+				if (text[i].isnumeric() or text[i] == '(') and text[i-1] != '-':
 					temp = temp + " " + text[i]
 				else:
 					temp = temp + text[i]
@@ -336,7 +361,7 @@ class QueueManipulator:
 			queue_for_tom = queue_for_tom + member_day_data.name
 			if member_day_data.is_bold == True:
 				queue_for_tom = queue_for_tom + ' b '
-			if member_day_data.is_minus_one == True:
+			if member_day_data.is_minus_one == True or member_day_data.is_already_minus_one == True:
 				queue_for_tom = queue_for_tom + ' -1 '
 			if member_day_data.diff != None:
 				queue_for_tom = queue_for_tom + member_day_data.diff

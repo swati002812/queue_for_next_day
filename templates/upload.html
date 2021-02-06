@@ -16,13 +16,13 @@
                   {% else %}
                      <b>{{item.name}}</b> >
                   {% endif %}
-               {% elif item.is_minus_one == true %}
+               {% elif item.is_minus_one == true or item.is_already_minus_one == True %}
                   {{item.name}} -1 >
                {% else %}
                   {{item.name}} >
                {% endif %}
             {% else %}
-               {% if item.is_minus_one == true %}
+               {% if item.is_minus_one == true or item.is_already_minus_one == True %}
                   {{item.name}} -1 >
                {% else %}
                   {{item.name}}
