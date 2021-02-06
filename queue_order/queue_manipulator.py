@@ -28,6 +28,7 @@ class QueueManipulator:
 			print("no_of_rounds:",member_data.no_of_rounds)
 			print("is_BM:", member_data.is_BM)
 			print("temp_variable:", member_data.temp_variable)
+			print("already_minus_one:", member_data.is_already_minus_one)
 			print("\n")
 		print('above_BL:', self.above_BL)
 		print('equal_BL:', self.equal_BL)
@@ -346,12 +347,25 @@ class QueueManipulator:
 
 				member_data_right = self.findPersonIsNotOnLeaveTodayRight(i+1, len(self.member_day_data_list))
 				member_data_left = self.findPersonIsNotOnLeaveTodayLeft(0, i-1)
+
 				if member_data_left != None and member_data_right != None:
-					self.member_day_data_list[i].temp_variable = min(member_data_left.temp_variable, member_data_right.temp_variable)
+					member_data= member_data_right
+					if member_data_left.temp_variable < member_data_right.temp_variable:
+						member_data = member_data_left
+					elif member_data_left.temp_variable == member_data_right.temp_variable:
+						if member_data_left.is_already_minus_one == True:
+							member_data = member_data_left
+						elif member_data_right.is_already_minus_one == True:
+							member_data = member_data_right
+					self.member_day_data_list[i].temp_variable = member_data.temp_variable
+					self.member_day_data_list[i].is_already_minus_one = member_data.is_already_minus_one
 				elif member_data_left != None:
 					self.member_day_data_list[i].temp_variable = member_data_left.temp_variable
+					self.member_day_data_list[i].is_already_minus_one = member_data_left.is_already_minus_one
 				else:
 					self.member_day_data_list[i].temp_variable = member_data_right.temp_variable
+					self.member_day_data_list[i].is_already_minus_one = member_data_right.is_already_minus_one
+
 
 ######################################################  People On Leave #######################################################################################
 
@@ -415,7 +429,7 @@ class QueueManipulator:
 				elif self.member_day_data_list[i].temp_variable == 0:
 					self.member_day_data_list[i].is_bold = True
 				else:
-					if self.member_day_data_list[i].is_on_leave_today == 'Y' and self.member_day_data_list[i].temp_variable == -1:
+					if self.member_day_data_list[i].is_on_leave_today == 'Y' and self.member_day_data_list[i].is_already_minus_one == True:
 						self.member_day_data_list[i].is_minus_one = True
 					else:
 						self.member_day_data_list[i].is_minus_one = False
