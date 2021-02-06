@@ -187,12 +187,13 @@ class QueueManipulator:
 		self.member_day_data_list = []
 		for paragraph in document.paragraphs:
 			boldWords = ''
+			nonBoldWords = ''
 			for run in paragraph.runs:
 				word = run.text.lower().replace(u'\xa0', u' ')
+				word = word.strip()
 				tempWords = self.getWord(word)
 				if len(tempWords) == 0:
 					continue
-
 				# checks if the word is bold and a number then the number belongs to previous word
 				if run.bold and (tempWords[0].strip()).isnumeric():
 					boldWords = boldWords + " " + " ".join(tempWords)
@@ -202,17 +203,27 @@ class QueueManipulator:
 				# checks if the word is bold then appending with existing words
 				elif run.bold:
 					boldWords = boldWords + ">" + ">".join(tempWords)
+					if nonBoldWords != '':
+						words = self.getWord(nonBoldWords)
+						self.processWords(words, self.WORD_NORMAL)
+						nonBoldWords = ''
 				# this is for non bold , in this we process boldWords if not empty 
+				elif self.isNegativeNumber(word):
+					nonBoldWords = nonBoldWords + " " + " ".join(tempWords)
 				else:
 					if boldWords != '':
 						words = self.getWord(boldWords)
 						self.processWords(words, self.WORD_BOLD)
 						boldWords = ''
-					self.processWords(tempWords, self.WORD_NORMAL)
+					nonBoldWords = nonBoldWords + ">" + ">".join(tempWords)
 			if boldWords != '':
 				words = self.getWord(boldWords)
 				self.processWords(words, self.WORD_BOLD)
 				boldWords = ''
+			if nonBoldWords != '':
+				words = self.getWord(nonBoldWords)
+				self.processWords(words, self.WORD_NORMAL)
+				nonBoldWords = ''
 
 ###################################################################################### PROCESS WORDS ##############################################
 
