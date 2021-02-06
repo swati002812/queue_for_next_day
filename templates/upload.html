@@ -1,6 +1,21 @@
 <html>
    <body>
-	  <img src = "{{url_for('static', filename='cisco-logo.png')}}" width = "500" height = "100"></img>
+	  <img src = "{{url_for('static', filename='cisco-logo-2.png')}}" width = "200" height = "100"></img>
+	  <div>
+	  <br>
+	  <h3><u>This tool is developed as per the new Queue Management system proposed by Chakshu Piplani.</u></h3>
+	  It will give the queue for next day based on the present day last queue.
+	  <div>
+	  <div>
+		<p><b>Follow the below steps:</b>
+		</p>
+		<ol>
+			<li>Click on Browse and select the wordpad (.docx) file having the last queue of present day. </li>
+			<li>Then enter the baseline value in the text box and click on Submit.</li>
+		</ol>
+	  </div>
+	  <br>
+	  <br>
       <form action = "{{domain}}{{path}}" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
@@ -8,6 +23,8 @@
          <input type = "submit"/>
       </form>
       <div>
+		<br>
+		<br>
          <b><u>Queue for Next Day: </u></b><br>
          {% for item in data %}
             {% if not loop.last %}
