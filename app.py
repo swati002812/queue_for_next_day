@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from werkzeug.utils import secure_filename
 import markdown.extensions.fenced_code
 from helper import Helper
@@ -17,6 +17,12 @@ def index():
         readme_file.read(), extensions=["fenced_code"]
     )
     return md_template_string
+
+@app.route('/download_rules/<path:filename>', methods=['GET'])
+def downloadRules(filename):
+    path = 'downloads/'+filename
+    return send_file(path, as_attachment=True)
+
 
 @app.route('/next_day_queue', methods = ['GET'])
 def uploadFile():
