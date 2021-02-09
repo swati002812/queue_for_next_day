@@ -1,32 +1,105 @@
 <html>
-   <body>
-	  <div>
-	  <br>
-	  <h3>This tool is developed as per reformed queue order.</h3>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+body {
+  background-color: lighten($grey, 10%);
+  font-size: 100%;
+  @include lato-reg;
+}
+div, textarea, input {
+  @include box-sizing(border-box); 
+}  
+
+a:link, a:visited {
+  width: 158px;
+  background-color: white;
+  color: black;
+  border: 2px solid #00b8e6;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #00b8e6;
+  color: white;
+}
+
+input[type=file], select {
+  width: 240px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=number], select {
+  width: 100px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 410px;
+  background-color: #00b8e6;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container {  
+  background-color: $white;
+  border: 1px solid black; 
+  padding: 10px;
+  width: 80%;
+}
+
+h1 {
+  display: inline-block;
+  font-weight: 100;
+  font-size: pxtoem(45, 16);
+  border-bottom: 1px solid hsla(100%, 100%, 100%, 0.3);
+  margin: 0 0 0.1em 0;
+  padding: 0 0 0.4em 0;
+}
+
+</style>
+
+    <body>
+	  
+     <h1> Queue Order </h1>
+     <hr>
+	  <p>This tool is developed as per the reformed queue order.
 	  It will give the queue for next day based on the present day last queue.
+   </p>
+	  
 	  <div>
-	  <div>
-		<p><b>Follow the below steps:</b>
+		<p><b>Instructions (Short Version):</b>
 		</p>
 		<ol>
-			<li>Click on Browse and select the wordpad (.docx) file having the last queue of present day. </li>
+			<li>Click on Browse and select the Wordpad (.docx) file (for Windows users) or XYZ file (for MAC users) containing the last queue of present day. </li>
 			<li>Then enter the baseline value in the text box and click on Submit.</li>
 		</ol>
 	  </div>
-	  <a href="{{domain}}download_rules/rules.pdf">Download Rules </a><br>
-	  <a href="{{domain}}download_rules/guide.pdf">Download Guide </a>
-	  <br>
-	  <br>
+	  
 	  
       <form action = "{{domain}}{{path}}" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          Baseline: <input type = "number" name = "baseline" /> 
+         <br>
          <input type = "submit"/>
       </form>
-      <div>
-		<br>
-		<br>
+   
+      <div class="container">
          <b><u>Queue for Next Day: </u></b><br>
          {% for item in data %}
             {% if not loop.last %}
@@ -50,15 +123,16 @@
             {% endif %}
          {% endfor %}
      </div>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
-	 <br>
 	 <div>
-	 For issues related to tool please contact Chakshu Piplani (cpiplani)
+      <h3> Reference Links </h3>
+      <a href="{{domain}}download_rules/rules.pdf"><i class="fa fa-download"></i> Queue Rules </a> 
+     <a href="{{domain}}download_rules/guide.pdf"><i class="fa fa-download"></i> Tool Guide </a>
+     <a href="{{domain}}download_rules/faq.pdf"><i class="fa fa-download"></i> FAQ </a>
+     <br>
+     <br>
+    <br>
+	 For issues related to tool please contact Chakshu Piplani (cpiplani).
+    
 	 </div>
    </body>
 </html>
