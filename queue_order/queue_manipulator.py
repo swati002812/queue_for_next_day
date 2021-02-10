@@ -248,7 +248,7 @@ class QueueManipulator:
 
 		working_people = self.above_BL + self.below_BL + self.equal_BL
 		working_people_half = math.floor(working_people/2)
-		if working_people_half <= self.equal_BL:
+		if working_people_half < self.equal_BL:
 			self.queue_type = -1
 		else:
 			self.queue_type = 1
