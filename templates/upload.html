@@ -57,7 +57,7 @@ input[type=submit] {
 
 .container {  
   background-color: $white;
-  border: 1px solid black; 
+  border: 3px solid #00b8e6;  
   padding: 10px;
   width: 80%;
 }
@@ -75,18 +75,29 @@ h1 {
 
     <body>
 	  
-     <h1> Queue Order </h1>
+     <h1> Queue Order (BETA Version) </h1>
      <hr>
 	  <p>This tool is developed as per the reformed queue order.
 	  It will give the queue for next day based on the present day last queue.
    </p>
+   
+	<div>
+		<p><b>Pre-requisites:</b>
+		</p>
+		<ol>
+			<li>Make sure that everything written between the > sign should be either completely bold or completely non-bold. Putting any number of spaces won’t affect the parsing of the queue. </li>
+			<li>If a person is on leave or is BM, then only mention that inside a bracket (). The tool works in the following way: If the tool finds an opening bracket ‘(‘then it will check if BM is mentioned inside that bracket or not. If not, then the tool considers that person on leave and will apply left-right rule on them.</li>
+			<li>To get the details on Pre-requites with the help of examples, click on Tool Guide button given under the Reference Links section below.</li>
+		</ol>
+	  </div>
 	  
 	  <div>
 		<p><b>Instructions (Short Version):</b>
 		</p>
 		<ol>
-			<li>Click on Browse and select the Wordpad (.docx) file (for Windows users) or XYZ file (for MAC users) containing the last queue of present day. </li>
-			<li>Then enter the baseline value in the text box and click on Submit.</li>
+			<li>Click on Browse and select the Wordpad file in the Office Open XML Document format (for Windows users) or XYZ file (for MAC users) containing the last queue of present day. </li>
+			<li>Then enter the baseline value (i.e. the number of round done that day) in the text box and click on Submit Query.</li>
+			<li>To get the detailed guide on how to use the tool with the help of screenshots, click on Tool Guide button given under the Reference Links section below.</li>
 		</ol>
 	  </div>
 	  
@@ -132,12 +143,13 @@ h1 {
 	 <div>
       <h3> Reference Links </h3>
       <a href="{{domain}}download_rules/rules.pdf"><i class="fa fa-download"></i> Queue Rules </a> 
-     <a href="{{domain}}download_rules/guide.pdf"><i class="fa fa-download"></i> Tool Guide </a>
-     <a href="{{domain}}download_rules/faq.pdf"><i class="fa fa-download"></i> FAQ </a>
+     <a href="{{domain}}download_rules/Tool Guide.docx"><i class="fa fa-download"></i> Tool Guide </a>
+     <a href="{{domain}}download_rules/FAQs.docx"><i class="fa fa-download"></i> FAQ </a>
      <br>
      <br>
     <br>
-	 For issues related to tool please contact Chakshu Piplani (cpiplani).
+	 For issues related to tool please contact <b>Chakshu Piplani (cpiplani)/ Swati Sinha (swsinha2)</b>.
+	 <p>This tool has been developed by Swati Sinha (swsinha2) and is currently under beta testing phase.</p>
     
 	 </div>
    </body>
