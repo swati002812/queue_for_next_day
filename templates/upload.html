@@ -87,7 +87,7 @@ h1 {
 		<ol>
 			<li>Make sure that everything written between the > sign should be either completely bold or completely non-bold. Putting any number of spaces won’t affect the parsing of the queue. </li>
 			<li>If a person is on leave or is BM, then only mention that inside a bracket (). The tool works in the following way: If the tool finds an opening bracket ‘(‘then it will check if BM is mentioned inside that bracket or not. If not, then the tool considers that person on leave and will apply left-right rule on them.</li>
-			<li>To get the details on Pre-requites with the help of examples, click on Tool Guide button given under the Reference Links section below.</li>
+			<li>To get the details on Pre-requisites with the help of examples, click on Tool Guide button given under the Reference Links section below.</li>
 		</ol>
 	  </div>
 	  
@@ -95,7 +95,7 @@ h1 {
 		<p><b>Instructions (Short Version):</b>
 		</p>
 		<ol>
-			<li>Click on Browse and select the Wordpad file in the Office Open XML Document format (for Windows users) or TextEdit file (for MAC users) containing the last queue of present day. </li>
+			<li>Click on Browse and select the Wordpad file in the Office Open XML Document format (for Windows users) or TextEdit file in the Word 2007 (.docx) format (for MAC users) containing the last queue of present day. </li>
 			<li>Then enter the baseline value (i.e. the number of round done that day) in the text box and click on Submit Query.</li>
 			<li>To get the detailed guide on how to use the tool with the help of screenshots, click on Tool Guide button given under the Reference Links section below.</li>
 		</ol>
@@ -116,7 +116,7 @@ h1 {
             {% if not loop.last %}
                {% if item.is_bold == true %}
                   {% if item.diff != None %}
-                     <b>{{item.name}}</b> {{item.diff}} >
+                     <b>{{item.name}} {{item.diff}} </b>>
                   {% else %}
                      <b>{{item.name}}</b> >
                   {% endif %}
@@ -128,7 +128,7 @@ h1 {
             {% else %}
                {% if item.is_bold == true %}
                   {% if item.diff != None %}
-                     <b>{{item.name}}</b> {{item.diff}}
+                     <b>{{item.name}} {{item.diff}} </b>
                   {% else %}
                      <b>{{item.name}}</b>
                   {% endif %}
