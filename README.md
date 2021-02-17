@@ -5,10 +5,10 @@ This project is developed to provide the queue for next day based on the last qu
 It needs [Python to be installed] (version >= 3.7).
 
 ## FILE DESCRIPTION
-1. downloads-> rules.pdf: This file contains the rules based on which the queue for next day is computed.
-2. downloads-> Tool Guide.pdf: This file contains the steps to use the tool by the use of screenshots for both Windows and MAC users.
-3. downloads-> FAQs.pdf: This file contains the Frequently Asked Questions which people might come across while using the tool.
-4. requirements.txt: This file contains the packages which needs to be installed for using the tool locally. See the first step in the Installation and Setup (For running Locally) field below in order to use this file.
+1. **downloads-> rules.pdf**: This file contains the rules based on which the queue for next day is computed.
+2. **downloads-> Tool Guide.pdf**: This file contains the steps to use the tool by the use of screenshots for both Windows and MAC users.
+3. **downloads-> FAQs.pdf**: This file contains the Frequently Asked Questions which people might come across while using the tool.
+4. **requirements.txt**: This file contains the packages which needs to be installed for using the tool locally. See the first step in the Installation and Setup (For running Locally) field below in order to use this file.
 
 ## INSTALLATION AND SETUP (For running Locally)
 ```sh
