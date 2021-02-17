@@ -11,7 +11,7 @@ requirements.txt: This file contains the packages which needs to be installed fo
 
 ## INSTALLATION AND SETUP (For running Locally)
 ```sh
-$ pip3 install -r requirement.txt
+$ pip3 install -r requirements.txt
 $ python3 app.py
 Open the following URL on browser:
 localhost:5000/next_day_queue
